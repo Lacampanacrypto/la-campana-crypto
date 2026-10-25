@@ -601,9 +601,6 @@ async function criptoEnVivo(){
 
 /* ---------- Avisos de apertura ---------- */
 let audioCtx=null;
-function chime(){ try{
-  audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)(); const t0=audioCtx.currentTime;
- let audioCtx=null;
 const SONIDO = new Audio("campana.mp3");
 function chime(){ try{ SONIDO.currentTime = 0; SONIDO.play().catch(()=>{}); }catch(e){} }
 let toastTimer;
@@ -621,6 +618,7 @@ $("alertBtn").addEventListener("click", async ()=>{
   syncAlertBtn();
   if(alertsOn){
     try{ audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)(); audioCtx.resume&&audioCtx.resume(); }catch(e){}SONIDO.play().then(()=>{ SONIDO.pause(); SONIDO.currentTime=0; }).catch(()=>{});
+       SONIDO.play().then(()=>{ SONIDO.pause(); SONIDO.currentTime=0; }).catch(()=>{});
     try{ if("Notification" in window && Notification.permission==="default") await Notification.requestPermission(); }catch(e){}
     toast("Listo. Te avisaremos 5 minutos antes y al abrir el mercado americano.");
   } else toast("Aviso desactivado.");
