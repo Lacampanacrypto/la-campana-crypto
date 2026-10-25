@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La Campana Crypto</title>
+<meta name="description" content="Bitcoin, cripto y el mercado americano antes de la apertura: precios, índice de miedo y codicia, futuros, agenda macro y cuenta regresiva a la campana de Wall Street.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A3346'/%3E%3Cpath d='M32 12c-9 0-15 7-15 16v10l-5 8h40l-5-8V28c0-9-6-16-15-16z' fill='%237FF0FF'/%3E%3Ccircle cx='32' cy='52' r='5' fill='%23FF9D4D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,800;1,6..72,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<!-- Google AdSense: cuando te aprueben, pega aquí el código que te da AdSense (ver README). -->
+<style>
+/* Layout: periódico financiero a color; cronómetro arriba, luego cripto, mercado americano y la alerta del día siguiente. */
+:root{
+  --paper:#F4F4EF; --paper-2:#EAEBE4; --ink:#16181D; --muted:#5B616C; --rule:#C9CBC2;
+  --up:#14804A; --down:#C62A20;
+  --blue:#2350C8; --blue-bg:#E3EAFB;
+  --violet:#6A3FC2; --violet-bg:#EEE7FB;
+  --teal:#0E7F7A; --teal-bg:#DDF2EF;
+  --orange:#D9640B; --orange-bg:#FDEBDA;
+  --pink:#C2276B; --pink-bg:#FBE3EE;
+  --gold:#9A6A00; --gold-bg:#FBEFC9;
+  --bell-bg:#0A3346; --bell-bg2:#0E5C6E; --bell-fg:#EEF8FB; --bell-muted:#A9D3DE; --bell-hot:#7FF0FF;
+  --f-mast:"DM Serif Display",Georgia,"Times New Roman",serif;
+  --f-text:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-data:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#101217; --paper-2:#191C23; --ink:#E9E8E2; --muted:#9CA2AD; --rule:#2D313A;
+  --up:#4FCB86; --down:#FF7B70;
+  --blue:#7FA2FF; --blue-bg:#18213D; --violet:#B597FF; --violet-bg:#231A3A;
+  --teal:#4FD1C5; --teal-bg:#0F2B2A; --orange:#FF9D4D; --orange-bg:#33200F;
+  --pink:#FF79B0; --pink-bg:#361627; --gold:#F5C451; --gold-bg:#33290F;
+  --bell-bg:#062431; --bell-bg2:#0B4A59; --bell-fg:#EEF8FB; --bell-muted:#9CC9D5; --bell-hot:#7FF0FF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#101217; --paper-2:#191C23; --ink:#E9E8E2; --muted:#9CA2AD; --rule:#2D313A;
+  --up:#4FCB86; --down:#FF7B70;
+  --blue:#7FA2FF; --blue-bg:#18213D; --violet:#B597FF; --violet-bg:#231A3A;
+  --teal:#4FD1C5; --teal-bg:#0F2B2A; --orange:#FF9D4D; --orange-bg:#33200F;
+  --pink:#FF79B0; --pink-bg:#361627; --gold:#F5C451; --gold-bg:#33290F;
+  --bell-bg:#062431; --bell-bg2:#0B4A59; --bell-fg:#EEF8FB; --bell-muted:#9CC9D5; --bell-hot:#7FF0FF; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-text);font-size:17px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:calc(20px + env(safe-area-inset-top,0px)) calc(40px + env(safe-area-inset-bottom,0px))}
+[hidden]{display:none!important}
+.wrap{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1,h2,h3,h4{text-wrap:balance;margin:0;line-height:1.15}
+p{margin:0}
+a{color:inherit}
+.kicker{font-family:var(--f-data);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.up{color:var(--up)} .down{color:var(--down)}
+.empty{color:var(--muted);font-size:15px;font-style:italic;padding-block:6px}
+
+/* Cabecera */
+.mast{text-align:center;padding-bottom:10px;display:flex;flex-direction:column;gap:6px}
+.mast::after{content:"";height:5px;margin-top:6px;background:linear-gradient(90deg,var(--orange),var(--gold),var(--pink),var(--violet),var(--blue),var(--teal))}
+.mast .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:6px}
+.mast h1{font-family:var(--f-mast);font-weight:400;font-size:clamp(42px,10vw,88px);line-height:1;letter-spacing:-.01em}
+.mast h1 em{font-style:normal;color:var(--orange)}
+.mast .sub{font-style:italic;color:var(--muted)}
+.tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.tag{font-family:var(--f-data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;font-weight:600}
+.tag.us{background:var(--blue-bg);color:var(--blue)} .tag.btc{background:var(--orange-bg);color:var(--orange)}
+.tag.sample{background:var(--pink-bg);color:var(--pink)} .tag.live{background:var(--teal-bg);color:var(--teal)}
+.tag.stale{background:var(--gold-bg);color:var(--gold)}
+
+/* Publicidad */
+.ad{border:1.5px dashed var(--muted);background:repeating-linear-gradient(135deg,transparent 0 12px,var(--paper-2) 12px 24px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:14px;color:var(--muted);min-width:0}
+.ad b{font-family:var(--f-data);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.ad span{font-size:14px}
+.ad.leader{min-height:90px;width:100%;max-width:728px;margin:0 auto}
+.ad.box{min-height:250px}
+.ad.wide{min-height:120px}
+
+/* Separador de bloque */
+.block-h{display:flex;align-items:center;gap:12px}
+.block-h::before,.block-h::after{content:"";flex:1;height:2px;background:var(--c)}
+.block-h span{font-family:var(--f-data);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--c)}
+
+/* Encabezados de sección */
+.sec-h{display:flex;flex-direction:column;gap:4px;border-top:4px solid var(--c,var(--ink));padding-top:8px}
+.sec-h .kicker{color:var(--c,var(--muted));font-weight:600}
+.sec-h h3{font-size:22px;font-weight:800}
+.c-blue{--c:var(--blue)} .c-violet{--c:var(--violet)} .c-teal{--c:var(--teal)}
+.c-orange{--c:var(--orange)} .c-pink{--c:var(--pink)} .c-gold{--c:var(--gold)}
+
+.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.cols>section{display:flex;flex-direction:column;gap:12px;min-width:0}
+.quote{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:baseline;border-bottom:1px dotted var(--rule);padding-block:7px}
+.quote b{font-family:var(--f-data);font-weight:600;font-size:15px}
+.quote .q{font-family:var(--f-data);font-variant-numeric:tabular-nums;font-size:15px;text-align:right;font-weight:600}
+.quote .n{font-size:14px;color:var(--muted)}
+.quote .c{font-family:var(--f-data);font-variant-numeric:tabular-nums;font-size:13.5px;text-align:right}
+
+/* Cripto */
+.crypto{background:var(--orange-bg);padding:22px;display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.crypto .sec-h{border-top-color:var(--orange)}
+.coins{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.coin{background:var(--paper);padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.coin b{font-family:var(--f-data);font-size:13px;color:var(--orange);letter-spacing:.06em}
+.coin .px{font-family:var(--f-data);font-variant-numeric:tabular-nums;font-size:clamp(17px,2.4vw,21px);font-weight:600;overflow-wrap:anywhere}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+.fg{background:var(--paper);padding:18px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.fg svg{width:100%;max-width:300px;height:auto}
+.fg .val{font-family:var(--f-data);font-size:46px;font-weight:600;line-height:1}
+.fg .lab{font-size:20px;font-weight:800}
+.fg-hist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-top:6px}
+.fg-hist div{background:var(--paper-2);padding:8px 4px;display:flex;flex-direction:column;gap:2px}
+.fg-hist span{font-size:12px;color:var(--muted)}
+.fg-hist strong{font-family:var(--f-data);font-size:18px}
+
+/* Campana / cronómetro */
+.bell{background:radial-gradient(120% 140% at 0% 0%,var(--bell-bg2),var(--bell-bg) 70%);color:var(--bell-fg);padding:28px clamp(18px,4vw,36px);display:grid;grid-template-columns:1fr auto;gap:20px 32px;align-items:center;border:2px solid var(--bell-hot);box-shadow:0 0 0 6px color-mix(in srgb,var(--bell-hot) 18%,transparent),0 18px 40px -18px rgba(6,40,55,.55)}
+.bell .label{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bell .kicker{color:var(--bell-muted);font-size:13px}
+.pill{font-family:var(--f-data);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;font-weight:600;color:#10131A}
+.pill.open{background:#4FCB86} .pill.pre{background:var(--bell-hot)} .pill.closed{background:#C9CEE6}
+.clock{font-family:var(--f-data);font-variant-numeric:tabular-nums;font-weight:600;font-size:clamp(48px,13vw,104px);line-height:1;letter-spacing:-.03em;color:var(--bell-hot);text-shadow:0 0 28px color-mix(in srgb,var(--bell-hot) 45%,transparent)}
+.clock small{font-size:.32em;font-weight:400;color:var(--bell-muted);letter-spacing:0;margin-left:4px}
+.bell .times{color:var(--bell-muted);font-size:15px}
+.bell .actions{display:flex;flex-direction:column;gap:8px;min-width:0}
+.btn{font:600 15px/1 var(--f-text);padding:12px 16px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.bell .btn{background:var(--bell-hot);border-color:var(--bell-hot);color:#04222C}
+.bell .btn.ghost{background:transparent;color:var(--bell-fg);border-color:var(--bell-muted)}
+.bell .btn[aria-pressed="true"]{background:#4FCB86;border-color:#4FCB86;color:#0B1F14}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* Agenda */
+.table-wrap{overflow-x:auto;border-top:4px solid var(--violet)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th{font-family:var(--f-data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);text-align:left;font-weight:600;padding:10px 8px;background:var(--violet-bg)}
+td{padding:10px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+td.num,th.r{text-align:right}
+.imp{font-family:var(--f-data);font-size:11px;padding:2px 7px;white-space:nowrap;font-weight:600}
+.imp.alto{background:var(--pink-bg);color:var(--down)} .imp.medio{background:var(--gold-bg);color:var(--gold)}
+tr.past td{color:var(--muted)}
+
+/* Niveles (compactos) */
+.two{display:grid;grid-template-columns:1.6fr 1fr;gap:28px}
+.lvl{border:1.5px solid var(--c);padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.lvl h4{font-size:14px;font-weight:800;color:var(--c);font-family:var(--f-data);letter-spacing:.04em}
+.lvl .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:4px 14px}
+.lvl .row{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--rule);padding-block:3px;font-size:13.5px}
+.lvl .row .num{font-weight:600}
+.lvl-sec{display:flex;flex-direction:column;gap:8px;min-width:0}
+.lvl-sec .sec-h h3{font-size:17px}
+
+/* Alerta del día siguiente (mismo lenguaje que el cronómetro) */
+.next{--sc:#4FCB86;background:radial-gradient(120% 140% at 100% 0%,var(--bell-bg2),var(--bell-bg) 70%);color:var(--bell-fg);
+  border:2px solid var(--sc);padding:14px 18px;display:flex;flex-direction:column;gap:8px;
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--sc) 16%,transparent)}
+.next .head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.next .kicker{color:var(--bell-muted);font-size:11.5px}
+.next .badge{font-family:var(--f-data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:3px 9px;background:var(--sc);color:#04222C}
+.next h3{font-family:var(--f-mast);font-weight:400;font-size:clamp(20px,3.6vw,26px);color:var(--bell-fg)}
+.next .day{font-size:14.5px;color:var(--bell-muted)}
+.events{display:flex;flex-direction:column;gap:6px}
+.ev{--ec:#4FCB86;background:rgba(255,255,255,.07);border-left:4px solid var(--ec);padding:7px 10px;display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:center}
+.ev .nm{font-size:15px;font-weight:800;color:var(--bell-fg)}
+.ev .tm{font-family:var(--f-data);font-size:12.5px;text-align:right;color:var(--bell-hot)}
+.ev .dt{grid-column:1/-1;font-family:var(--f-data);font-size:12px;color:var(--bell-muted)}
+.wake{font-family:var(--f-data);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:#FF6B5E;color:#2A0603;padding:5px 10px;display:inline-block}
+.wake.soft{background:#FFC94D;color:#1A1405}
+.next .note{font-size:13.5px;color:var(--bell-muted)}
+
+footer{border-top:3px double var(--ink);padding-top:12px;font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+footer nav{display:flex;gap:16px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--paper);padding:12px 16px;font-size:15px;max-width:calc(100% - 32px);z-index:20;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+
+@media (max-width:1000px){.cols{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  .cols,.two,.crypto,.bell{grid-template-columns:1fr}
+}
+@media (max-width:440px){ .coins{grid-template-columns:1fr 1fr} .metrics{grid-template-columns:1fr} .ev{grid-template-columns:1fr} .ev .tm{text-align:left} }
+@media (prefers-reduced-motion:no-preference){
+  .bell.ringing{animation:ring .5s ease-in-out 3}
+  @keyframes ring{0%,100%{transform:none}25%{transform:rotate(-.6deg)}75%{transform:rotate(.6deg)}}
+  #needle{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="top kicker"><span id="edDate">—</span><span>Edición premercado · Cripto y mercado americano</span></div>
+    <h1>La Campana <em>Crypto</em></h1>
+    <p class="sub">El informe de cada mañana antes de que suene la campana de Wall Street</p>
+    <div class="tags"><span class="tag btc">Bitcoin y cripto</span><span class="tag us">Mercado americano</span><span class="tag sample" id="dataTag">Cargando datos…</span></div>
+  </header>
+
+  <section class="bell" id="bell" aria-labelledby="bellTitle">
+    <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+      <div class="label"><span class="pill" id="status">—</span><span class="kicker" id="bellTitle">Faltan para la apertura del mercado americano</span></div>
+      <div class="clock" id="clock">--:--:--</div>
+      <p class="times" id="times">Calculando horario…</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="alertBtn" aria-pressed="false">Avisarme de la apertura</button>
+      <button class="btn ghost" id="testBtn">Probar el sonido</button>
+    </div>
+  </section>
+
+  <div class="ad leader" aria-label="Espacio publicitario"><b>Publicidad</b><span>Banner 728 × 90</span></div>
+
+  <!-- ===== BLOQUE CRIPTO ===== -->
+  <div class="block-h" style="--c:var(--orange)"><span>Bitcoin y cripto</span></div>
+
+  <section class="crypto" aria-labelledby="cryptoTitle">
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+      <div class="sec-h"><span class="kicker" style="color:var(--orange)">Precios y métricas</span><h3 id="cryptoTitle">El mercado que nunca cierra</h3></div>
+      <div class="coins" id="coins"></div>
+      <div class="metrics" id="cmetrics"></div>
+    </div>
+    <div class="fg" aria-labelledby="fgTitle">
+      <span class="kicker" id="fgTitle">Índice de miedo y codicia</span>
+      <svg viewBox="0 0 220 128" role="img" aria-label="Medidor de miedo y codicia">
+        <g id="arcs"></g>
+        <g id="needle" style="transform-origin:110px 112px;transform:rotate(-90deg)">
+          <line x1="110" y1="112" x2="110" y2="30" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+        <circle cx="110" cy="112" r="7" fill="var(--ink)"/>
+        <text x="14" y="126" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono, monospace">0</text>
+        <text x="196" y="126" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono, monospace">100</text>
+      </svg>
+      <div class="val num" id="fgVal">—</div>
+      <div class="lab" id="fgLab">—</div>
+      <div class="fg-hist" id="fgHist"></div>
+    </div>
+  </section>
+
+  <section class="lvl-sec">
+    <div class="sec-h c-orange"><span class="kicker">Niveles BTC</span><h3>Referencias del día</h3></div>
+    <div id="lvlBtc"></div>
+  </section>
+
+  <!-- ===== BLOQUE MERCADO AMERICANO ===== -->
+  <div class="block-h" style="--c:var(--blue)"><span>Mercado americano</span></div>
+
+  <div class="cols">
+    <section>
+      <div class="sec-h c-blue"><span class="kicker">Futuros</span><h3>Así amanecen</h3></div>
+      <div id="futures"></div>
+    </section>
+    <section>
+      <div class="sec-h c-violet"><span class="kicker">Tasas y dólar</span><h3>Bonos y volatilidad</h3></div>
+      <div id="rates"></div>
+    </section>
+    <section>
+      <div class="sec-h c-teal"><span class="kicker">Megacaps</span><h3>Pesos pesados</h3></div>
+      <div id="megacaps"></div>
+    </section>
+    <section>
+      <div class="sec-h c-gold"><span class="kicker">Petróleo</span><h3>Brent y WTI</h3></div>
+      <div id="oil"></div>
+    </section>
+  </div>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <div class="sec-h c-violet" style="border-top:0;padding-top:0"><span class="kicker">Agenda macro de EE. UU.</span><h3>Lo que sale hoy</h3></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Hora ET</th><th>Dato</th><th>Impacto</th><th class="r">Consenso</th><th class="r">Anterior</th></tr></thead>
+        <tbody id="agenda"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="two">
+    <section class="lvl-sec">
+      <div class="sec-h c-blue"><span class="kicker">Niveles NQ</span><h3>Referencias del día</h3></div>
+      <div id="lvlNq"></div>
+    </section>
+    <div class="ad box" aria-label="Espacio publicitario"><b>Publicidad</b><span>Recuadro 300 × 250</span></div>
+  </div>
+
+  <!-- ===== ALERTA DEL DÍA SIGUIENTE ===== -->
+  <section class="next" id="next" aria-labelledby="nextTitle">
+    <div class="head"><span class="badge" id="nextBadge">—</span><span class="kicker">Alerta para el siguiente día</span></div>
+    <h3 id="nextTitle">—</h3>
+    <p class="day" id="nextDay"></p>
+    <div id="wake"></div>
+    <div class="events" id="nextEvents"></div>
+    <p class="note" id="nextNote"></p>
+  </section>
+
+  <div class="ad wide" aria-label="Espacio publicitario"><b>Publicidad</b><span>Brokers, exchanges, prop firms o cursos de trading</span></div>
+
+  <footer>
+    <p><strong>Aviso:</strong> La Campana Crypto es contenido informativo y educativo. No es asesoría financiera ni una recomendación de compra o venta. Operar criptomonedas, CFD y futuros conlleva un alto riesgo de pérdida. Los datos pueden tener retraso o errores.</p>
+    <p>Las criptomonedas operan 24 horas, todos los días. Mercado americano: 9:30 am – 4:00 pm hora de Nueva York, lunes a viernes, salvo feriados de NYSE.</p>
+    <p>Fuentes de datos: precios cripto de <a href="https://www.coingecko.com" rel="noopener" target="_blank">CoinGecko</a>, índice de miedo y codicia de <a href="https://alternative.me/crypto/fear-and-greed-index/" rel="noopener" target="_blank">alternative.me</a>, velas de BTC de Coinbase, cotizaciones de Yahoo Finance y calendario económico de Forex Factory.</p>
+    <nav><a href="privacidad.html">Política de privacidad</a><a href="privacidad.html#contacto">Contacto</a></nav>
+  </footer>
+</div>
+
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN — cambia TU_USUARIO por tu usuario de GitHub (ver README)
+   ===================================================================== */
+const CONFIG = {
+  DATOS_URL: "https://raw.githubusercontent.com/Acxel/la-campana-crypto/datos/datos.json",
+  REFRESCO_DATOS_MS: 5 * 60 * 1000,   // vuelve a leer datos.json cada 5 minutos
+  REFRESCO_CRIPTO_MS: 60 * 1000,      // precios cripto en vivo cada minuto
+  CRIPTO_EN_VIVO: true
+};
+
+/* Datos de muestra: se muestran solo si no se puede leer datos.json */
+const MUESTRA = {
+  actualizado: null,
+  cripto: {
+    monedas: [
+      { s: "BTC", precio: 68450, cambio24h: 1.8, max24h: 69120, min24h: 66980 },
+      { s: "ETH", precio: 3120, cambio24h: 2.4 },
+      { s: "SOL", precio: 162.3, cambio24h: -0.6 }
+    ],
+    global: { dominancia_btc: 57.2, cap_total: 2.41e12, cap_cambio24h: 1.6, volumen24h: 8.7e10 }
+  },
+  miedo_codicia: { hoy: { valor: 64 }, ayer: { valor: 58 }, semana: { valor: 47 }, mes: { valor: 39 } },
+  btc_niveles: { vwap_diario: 68020, apertura_diaria: 67810, apertura_semanal: 67540, max_dia: 68890, min_dia: 67420 },
+  futuros: [
+    { s: "NQ", nombre: "Futuros Nasdaq-100", precio: 21402, cambio_pct: 0.42 },
+    { s: "ES", nombre: "Futuros S&P 500", precio: 5912, cambio_pct: 0.28 },
+    { s: "Nikkei", nombre: "Japón", precio: 39210, cambio_pct: 0.6 },
+    { s: "Hang Seng", nombre: "Hong Kong", precio: 20110, cambio_pct: -0.1 },
+    { s: "Stoxx 600", nombre: "Europa", precio: 521.4, cambio_pct: 0.3 }
+  ],
+  tasas: [
+    { s: "US10Y", nombre: "Bono a 10 años (%)", precio: 4.12, cambio: -0.03, cambio_pct: -0.7 },
+    { s: "DXY", nombre: "Índice dólar", precio: 103.8, cambio_pct: -0.2 },
+    { s: "VIX", nombre: "Volatilidad", precio: 15.4, cambio_pct: -3.1 }
+  ],
+  megacaps: [
+    { s: "NVDA", nombre: "Nvidia", precio: 138.2, cambio_pct: 0.9 },
+    { s: "AAPL", nombre: "Apple", precio: 231.5, cambio_pct: -0.2 },
+    { s: "MSFT", nombre: "Microsoft", precio: 428.1, cambio_pct: 0.3 },
+    { s: "TSLA", nombre: "Tesla", precio: 251.7, cambio_pct: 1.4 }
+  ],
+  petroleo: [
+    { s: "Brent", nombre: "Referencia internacional", precio: 74.8, cambio_pct: -0.6 },
+    { s: "WTI", nombre: "Referencia de EE. UU.", precio: 70.95, cambio_pct: -0.5 }
+  ],
+  nq_niveles: { max_previo: 21480, min_previo: 21236, cierre_previo: 21402, vwap_previo: 21355, overnight_max: 21455, overnight_min: 21380 },
+  calendario: [],
+  feriados: null
+};
+
+/* Feriados de respaldo (NYSE). datos.json trae la lista actualizada cada año. */
+const FERIADOS_RESPALDO = {
+  "2026-11-26":{t:"closed",n:"Día de Acción de Gracias"}, "2026-11-27":{t:"early",n:"Viernes después de Acción de Gracias"},
+  "2026-12-24":{t:"early",n:"Nochebuena"}, "2026-12-25":{t:"closed",n:"Navidad"},
+  "2027-01-01":{t:"closed",n:"Año Nuevo"}, "2027-01-18":{t:"closed",n:"Día de Martin Luther King Jr."},
+  "2027-02-15":{t:"closed",n:"Día de los Presidentes"}, "2027-03-26":{t:"closed",n:"Viernes Santo"},
+  "2027-05-31":{t:"closed",n:"Día de los Caídos"}, "2027-06-18":{t:"closed",n:"Juneteenth (observado)"},
+  "2027-07-05":{t:"closed",n:"Día de la Independencia (observado)"}, "2027-09-06":{t:"closed",n:"Día del Trabajo"},
+  "2027-11-25":{t:"closed",n:"Día de Acción de Gracias"}, "2027-11-26":{t:"early",n:"Viernes después de Acción de Gracias"},
+  "2027-12-24":{t:"closed",n:"Navidad (observado)"}
+};
+
+/* Nombres en español de los datos del calendario */
+const TITULOS = {
+  "CPI m/m":"IPC mensual (CPI)", "CPI y/y":"IPC anual (CPI)", "Core CPI m/m":"IPC subyacente mensual (CPI)", "Core CPI y/y":"IPC subyacente anual (CPI)",
+  "PPI m/m":"Precios al productor (PPI)", "Core PPI m/m":"PPI subyacente mensual",
+  "Non-Farm Employment Change":"Nóminas no agrícolas (NFP)", "Unemployment Rate":"Tasa de desempleo",
+  "Average Hourly Earnings m/m":"Salario promedio por hora", "Unemployment Claims":"Solicitudes de desempleo",
+  "ADP Non-Farm Employment Change":"Empleo privado ADP", "JOLTS Job Openings":"Vacantes de empleo JOLTS",
+  "Retail Sales m/m":"Ventas minoristas", "Core Retail Sales m/m":"Ventas minoristas subyacentes",
+  "Flash Manufacturing PMI":"PMI manufacturero preliminar", "Flash Services PMI":"PMI de servicios preliminar",
+  "Final Manufacturing PMI":"PMI manufacturero final", "Final Services PMI":"PMI de servicios final",
+  "ISM Manufacturing PMI":"PMI manufacturero ISM", "ISM Services PMI":"PMI de servicios ISM",
+  "ISM Manufacturing Prices":"Precios manufactureros ISM",
+  "Core PCE Price Index m/m":"PCE subyacente mensual", "PCE Price Index m/m":"Índice de precios PCE",
+  "Advance GDP q/q":"PIB adelantado", "Prelim GDP q/q":"PIB preliminar", "Final GDP q/q":"PIB final",
+  "CB Consumer Confidence":"Confianza del consumidor (CB)", "Prelim UoM Consumer Sentiment":"Sentimiento del consumidor UMich (prelim.)",
+  "Revised UoM Consumer Sentiment":"Sentimiento del consumidor UMich (final)",
+  "Federal Funds Rate":"Decisión de tasas de la Fed", "FOMC Statement":"Comunicado del FOMC",
+  "FOMC Press Conference":"Conferencia de prensa del FOMC", "FOMC Meeting Minutes":"Minutas del FOMC",
+  "Crude Oil Inventories":"Inventarios de crudo (EIA)", "Durable Goods Orders m/m":"Pedidos de bienes duraderos",
+  "Core Durable Goods Orders m/m":"Pedidos de bienes duraderos subyacentes",
+  "Pending Home Sales m/m":"Ventas pendientes de viviendas", "New Home Sales":"Ventas de viviendas nuevas",
+  "Existing Home Sales":"Ventas de viviendas existentes", "Building Permits":"Permisos de construcción",
+  "Housing Starts":"Inicios de viviendas", "Empire State Manufacturing Index":"Índice manufacturero Empire State",
+  "Philly Fed Manufacturing Index":"Índice manufacturero Fed de Filadelfia", "Industrial Production m/m":"Producción industrial",
+  "Trade Balance":"Balanza comercial", "Employment Cost Index q/q":"Índice de costo laboral",
+  "10-y Bond Auction":"Subasta de bonos a 10 años", "30-y Bond Auction":"Subasta de bonos a 30 años",
+  "Treasury Currency Report":"Informe de divisas del Tesoro", "Beige Book":"Libro Beige de la Fed"
+};
+function tituloES(t){
+  if(!t) return "—";
+  if(TITULOS[t]) return TITULOS[t];
+  let m = t.match(/^Fed Chair (.+) Speaks$/); if(m) return `Habla el presidente de la Fed (${m[1]})`;
+  m = t.match(/^FOMC Member (.+) Speaks$/); if(m) return `Habla ${m[1]} (miembro del FOMC)`;
+  return t;
+}
+const CLAVE = /CPI|PPI|PMI|Non-Farm|PCE|GDP|Retail Sales|FOMC|Federal Funds|Fed Chair|Unemployment Rate|JOLTS/i;
+
+/* ---------- Zona horaria ---------- */
+const NY = "America/New_York";
+function parts(date, tz){
+  const f = new Intl.DateTimeFormat("en-US",{timeZone:tz,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"});
+  const o = {}; f.formatToParts(date).forEach(p=>{ if(p.type!=="literal") o[p.type]=+p.value; });
+  if(o.hour===24) o.hour=0; return o;
+}
+function offsetMin(date, tz){ const p=parts(date,tz); return Math.round((Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute,p.second)-date.getTime())/60000); }
+function nyToDate(y,m,d,h,mi){ const g=Date.UTC(y,m-1,d,h,mi); const t=g-offsetMin(new Date(g),NY)*60000; return new Date(g-offsetMin(new Date(t),NY)*60000); }
+const pad = n => String(n).padStart(2,"0");
+const ymd = (y,m,d) => `${y}-${pad(m)}-${pad(d)}`;
+const nyKey = date => { const p=parts(date,NY); return ymd(p.year,p.month,p.day); };
+const fmtNY = d => d.toLocaleTimeString("es",{hour:"numeric",minute:"2-digit",hour12:true,timeZone:NY});
+const fmtNYDay = d => d.toLocaleDateString("es",{weekday:"long",day:"numeric",month:"long",timeZone:NY});
+const cap = s => s.replace(/^./,c=>c.toUpperCase());
+
+/* ---------- Formato de números ---------- */
+const NF = (min,max) => new Intl.NumberFormat("es-MX",{minimumFractionDigits:min,maximumFractionDigits:max});
+function n(v, dec){ if(v==null||isNaN(v)) return "—"; if(dec==null) dec = Math.abs(v)>=1000?0:2; return NF(dec,dec).format(v); }
+function usd(v, dec){ return v==null ? "—" : "$" + n(v, dec); }
+function big(v){ if(v==null) return "—"; if(v>=1e12) return "$"+n(v/1e12,2)+" billones"; if(v>=1e9) return "$"+n(v/1e9,1)+" mil millones"; return usd(v,0); }
+function chg(v){ if(v==null||isNaN(v)) return "—"; return (v>0?"▲ +":v<0?"▼ ":"")+n(v,2)+" %"; }
+const cls = v => v>0?"up":v<0?"down":"";
+
+/* ---------- Render ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const vacio = msg => `<p class="empty">${msg||"Sin datos por ahora."}</p>`;
+let DATOS = null, USANDO_MUESTRA = false;
+
+function quoteRow(s, valor, cambioTxt, cambioCls, nota){
+  return `<div class="quote"><b>${esc(s)}</b><span class="q">${valor}</span><span class="n">${esc(nota||"")}</span><span class="c ${cambioCls}">${cambioTxt}</span></div>`;
+}
+function quotes(list, opts={}){
+  if(!list||!list.length) return vacio();
+  return list.map(q=>{
+    let valor = opts.usd ? usd(q.precio) : n(q.precio);
+    let cambio = chg(q.cambio_pct), c = cls(q.cambio_pct);
+    if(q.s==="US10Y"){ valor = n(q.precio,2)+" %"; if(q.cambio!=null){ const pb=q.cambio*100; cambio=(pb>0?"▲ +":pb<0?"▼ ":"")+n(pb,1)+" pb"; c=cls(pb);} }
+    return quoteRow(q.s, valor, cambio, c, q.nombre);
+  }).join("");
+}
+function level(titulo, color, rows, dec=0){
+  const r = rows.filter(([,v])=>v!=null);
+  if(!r.length) return vacio();
+  return `<div class="lvl" style="--c:${color}"><h4>${esc(titulo)}</h4><div class="rows">${r.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><span class="num">${n(v,dec)}</span></div>`).join("")}</div></div>`;
+}
+const fgLabel = v => v<25?"Miedo extremo":v<45?"Miedo":v<56?"Neutral":v<76?"Codicia":"Codicia extrema";
+const fgColor = v => v<25?"var(--down)":v<45?"var(--orange)":v<56?"var(--gold)":v<76?"#7BC043":"var(--up)";
+
+function renderCoins(monedas){
+  $("coins").innerHTML = monedas && monedas.length
+    ? monedas.map(c=>`<div class="coin"><b>${esc(c.s)}</b><span class="px">${usd(c.precio, c.precio>=1000?0:2)}</span><span class="num ${cls(c.cambio24h)}" style="font-size:14px">${chg(c.cambio24h)}</span></div>`).join("")
+    : vacio();
+}
+
+function render(D){
+  const now = new Date();
+  $("edDate").textContent = cap(now.toLocaleDateString("es",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:NY}));
+
+  /* Etiqueta de estado de los datos */
+  const tag = $("dataTag");
+  if(USANDO_MUESTRA){ tag.className="tag sample"; tag.textContent="Muestra · cifras ilustrativas"; }
+  else if(D.actualizado){
+    const t = new Date(D.actualizado), min = Math.round((now - t)/60000);
+    const viejo = min > 180;
+    tag.className = "tag " + (viejo ? "stale" : "live");
+    tag.textContent = (viejo ? "Datos con retraso · " : "Actualizado ") + fmtNY(t) + " ET";
+  }
+
+  /* Cripto */
+  const C = D.cripto || {};
+  renderCoins(C.monedas);
+  const G = C.global;
+  $("cmetrics").innerHTML = G ? [
+    quoteRow("Dominancia BTC", n(G.dominancia_btc,1)+" %", "", "", "Participación de bitcoin"),
+    quoteRow("Capitalización", big(G.cap_total), chg(G.cap_cambio24h), cls(G.cap_cambio24h), "Todo el mercado cripto · 24 h"),
+    quoteRow("Volumen 24 h", big(G.volumen24h), "", "", "Todo el mercado cripto")
+  ].join("") : vacio();
+
+  const F = D.miedo_codicia;
+  if(F && F.hoy){
+    const v = F.hoy.valor;
+    $("fgVal").textContent = v; $("fgVal").style.color = fgColor(v); $("fgLab").textContent = fgLabel(v);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ $("needle").style.transform = `rotate(${(v/100)*180-90}deg)`; }));
+    $("fgHist").innerHTML = [["Ayer",F.ayer],["Hace 1 semana",F.semana],["Hace 1 mes",F.mes]].map(([l,x])=> x
+      ? `<div><span>${l}</span><strong style="color:${fgColor(x.valor)}">${x.valor}</strong><span>${fgLabel(x.valor)}</span></div>`
+      : `<div><span>${l}</span><strong>—</strong></div>`).join("");
+  } else { $("fgVal").textContent="—"; $("fgLab").textContent="Sin datos"; $("fgHist").innerHTML=""; }
+
+  const B = D.btc_niveles || {}, btc = (C.monedas||[]).find(m=>m.s==="BTC") || {};
+  $("lvlBtc").innerHTML = level("BTC · Bitcoin (USD)", "var(--orange)", [
+    ["VWAP del día (UTC)", B.vwap_diario], ["Apertura del día", B.apertura_diaria], ["Apertura semanal", B.apertura_semanal],
+    ["Máximo 24 h", btc.max24h ?? B.max_dia], ["Mínimo 24 h", btc.min24h ?? B.min_dia]
+  ]);
+
+  /* Mercado americano */
+  $("futures").innerHTML = quotes(D.futuros);
+  $("rates").innerHTML = quotes(D.tasas);
+  $("megacaps").innerHTML = quotes(D.megacaps, {usd:true});
+  $("oil").innerHTML = quotes(D.petroleo, {usd:true});
+
+  const hoy = nyKey(now);
+  const evHoy = (D.calendario||[]).filter(e=>e.fecha && nyKey(new Date(e.fecha))===hoy);
+  $("agenda").innerHTML = evHoy.length ? evHoy.map(e=>{
+    const t = new Date(e.fecha), pasado = t < now;
+    const hp = parts(t,NY), allDay = hp.hour===0 && hp.minute===0;
+    return `<tr class="${pasado?"past":""}"><td class="num">${allDay?"Todo el día":fmtNY(t)}</td><td>${esc(tituloES(e.titulo))}</td><td><span class="imp ${e.impacto}">${e.impacto==="alto"?"Alto":"Medio"}</span></td><td class="num">${esc(e.consenso||"—")}</td><td class="num">${esc(e.anterior||"—")}</td></tr>`;
+  }).join("") : `<tr><td colspan="5" class="empty">${USANDO_MUESTRA?"La agenda aparece cuando se cargan los datos reales.":"Hoy no hay datos de alto o medio impacto en EE. UU."}</td></tr>`;
+
+  const Q = D.nq_niveles || {};
+  $("lvlNq").innerHTML = level("NQ · Futuros Nasdaq-100", "var(--blue)", [
+    ["Máximo sesión previa", Q.max_previo], ["Mínimo sesión previa", Q.min_previo], ["Cierre sesión previa", Q.cierre_previo],
+    ["VWAP sesión previa", Q.vwap_previo], ["Máximo overnight", Q.overnight_max], ["Mínimo overnight", Q.overnight_min]
+  ], 2);
+
+  renderNext(D);
+}
+
+/* ---------- Alerta del día siguiente ---------- */
+const feriados = () => (DATOS && DATOS.feriados) || FERIADOS_RESPALDO;
+function renderNext(D){
+  const p = parts(new Date(), NY);
+  const nb = new Date(Date.UTC(p.year,p.month-1,p.day+1));
+  const ny=nb.getUTCFullYear(), nm=nb.getUTCMonth()+1, nd=nb.getUTCDate(), wd=nb.getUTCDay();
+  const key = ymd(ny,nm,nd), fer = feriados()[key];
+  let badge, title, sc, note;
+  if(wd===0||wd===6){
+    badge="Fin de semana"; sc="#A9D3DE"; title="Mañana no hay mercado americano";
+    note="Bitcoin y las cripto siguen operando el fin de semana, normalmente con menos volumen.";
+  } else if(fer && fer.t==="closed"){
+    badge="Feriado"; sc="#FF6B5E"; title="Mañana el mercado americano está cerrado: "+fer.n;
+    note="Bitcoin sigue operando, pero con menos liquidez. Los futuros y CFD pueden tener horario reducido.";
+  } else if(fer && fer.t==="early"){
+    badge="Cierre anticipado"; sc="#FFC94D"; title="Mañana el mercado americano cierra temprano: "+fer.n;
+    note="Cierre a la 1:00 pm hora de Nueva York. Espera menos volumen por la tarde.";
+  } else {
+    badge="Día normal"; sc="#4FCB86"; title="Mañana el mercado americano abre en horario normal";
+    note="Apertura a las 9:30 am hora de Nueva York.";
+  }
+  $("next").style.setProperty("--sc", sc);
+  $("nextBadge").textContent=badge; $("nextTitle").textContent=title;
+  $("nextDay").textContent=cap(fmtNYDay(nyToDate(ny,nm,nd,12,0)));
+  $("nextNote").textContent=note;
+
+  /* Próxima sesión con mercado abierto */
+  let td=null;
+  for(let i=1;i<10;i++){
+    const b=new Date(Date.UTC(p.year,p.month-1,p.day+i)), w=b.getUTCDay(), k=ymd(b.getUTCFullYear(),b.getUTCMonth()+1,b.getUTCDate());
+    const f=feriados()[k];
+    if(w===0||w===6||(f&&f.t==="closed")) continue;
+    td={y:b.getUTCFullYear(),m:b.getUTCMonth()+1,d:b.getUTCDate(),k}; break;
+  }
+  const otro = td && td.k!==key ? " del "+fmtNYDay(nyToDate(td.y,td.m,td.d,12,0)) : "";
+  if(USANDO_MUESTRA || !D.calendario){
+    $("wake").innerHTML=""; $("nextEvents").innerHTML=`<div class="ev" style="--ec:#A9D3DE"><span class="nm">El calendario aparece cuando se cargan los datos reales</span><span class="tm"></span></div>`;
+    return;
+  }
+  const evs = td ? D.calendario.filter(e=>e.fecha && nyKey(new Date(e.fecha))===td.k) : [];
+  const hi = evs.filter(e=>e.impacto==="alto" || CLAVE.test(e.titulo||""));
+  if(hi.length){
+    const antes = hi.some(e=>{ const q=parts(new Date(e.fecha),NY); return q.hour*60+q.minute<570; });
+    $("wake").innerHTML = antes
+      ? `<span class="wake">⏰ Despiértate antes: hay datos importantes antes de la apertura${otro}</span>`
+      : `<span class="wake soft">⚠️ Datos de alto impacto${otro} durante la sesión</span>`;
+    $("nextEvents").innerHTML = hi.map(e=>{ const t=new Date(e.fecha);
+      return `<div class="ev" style="--ec:${e.impacto==="alto"?"#FF6B5E":"#FFC94D"}"><span class="nm">${esc(tituloES(e.titulo))}</span><span class="tm">${fmtNY(t)} hora de Nueva York</span><span class="dt">Consenso ${esc(e.consenso||"—")} · Anterior ${esc(e.anterior||"—")}</span></div>`; }).join("");
+  } else {
+    $("wake").innerHTML="";
+    $("nextEvents").innerHTML=`<div class="ev"><span class="nm">Sin CPI, PMI ni otros datos de alto impacto${otro}</span><span class="tm"></span></div>`;
+  }
+}
+
+/* ---------- Carga de datos ---------- */
+async function cargarDatos(){
+  try{
+    const r = await fetch(CONFIG.DATOS_URL + "?t=" + Math.floor(Date.now()/60000), {cache:"no-store"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    DATOS = await r.json(); USANDO_MUESTRA = false;
+  }catch(e){
+    if(!DATOS){ DATOS = MUESTRA; USANDO_MUESTRA = true; }
+  }
+  render(DATOS);
+}
+async function criptoEnVivo(){
+  if(!CONFIG.CRIPTO_EN_VIVO || USANDO_MUESTRA || !DATOS) return;
+  try{
+    const r = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true");
+    if(!r.ok) return;
+    const j = await r.json(), map = {BTC:"bitcoin",ETH:"ethereum",SOL:"solana"};
+    (DATOS.cripto.monedas||[]).forEach(m=>{ const x=j[map[m.s]]; if(x){ m.precio=x.usd; m.cambio24h=x.usd_24h_change; } });
+    renderCoins(DATOS.cripto.monedas);
+  }catch(e){}
+}
+
+/* ---------- Avisos de apertura ---------- */
+let audioCtx=null;
+function chime(){ try{
+  audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)(); const t0=audioCtx.currentTime;
+  [0,.35,.7].forEach((dt,i)=>{ const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type="sine"; o.frequency.value=[880,1175,880][i];
+    g.gain.setValueAtTime(.0001,t0+dt); g.gain.exponentialRampToValueAtTime(.35,t0+dt+.02); g.gain.exponentialRampToValueAtTime(.0001,t0+dt+1.2);
+    o.connect(g).connect(audioCtx.destination); o.start(t0+dt); o.stop(t0+dt+1.3); });
+}catch(e){} }
+let toastTimer;
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.hidden=true,6000); }
+function notify(title,body){
+  toast(title+" · "+body); chime();
+  const b=$("bell"); b.classList.remove("ringing"); void b.offsetWidth; b.classList.add("ringing");
+  try{ if("Notification" in window && Notification.permission==="granted") new Notification(title,{body}); }catch(e){}
+}
+let alertsOn=false; try{ alertsOn=localStorage.getItem("campana-alertas")==="1"; }catch(e){}
+function syncAlertBtn(){ const b=$("alertBtn"); b.setAttribute("aria-pressed",alertsOn?"true":"false"); b.textContent=alertsOn?"Aviso activado ✓":"Avisarme de la apertura"; }
+syncAlertBtn();
+$("alertBtn").addEventListener("click", async ()=>{
+  alertsOn=!alertsOn; try{ localStorage.setItem("campana-alertas",alertsOn?"1":"0"); }catch(e){}
+  syncAlertBtn();
+  if(alertsOn){
+    try{ audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)(); audioCtx.resume&&audioCtx.resume(); }catch(e){}
+    try{ if("Notification" in window && Notification.permission==="default") await Notification.requestPermission(); }catch(e){}
+    toast("Listo. Te avisaremos 5 minutos antes y al abrir el mercado americano.");
+  } else toast("Aviso desactivado.");
+});
+$("testBtn").addEventListener("click",()=>notify("🔔 Prueba de La Campana Crypto","Así sonará el aviso de apertura."));
+
+/* ---------- Cronómetro ---------- */
+function session(now){
+  const p = parts(now, NY), F = feriados();
+  for(let i=0;i<15;i++){
+    const b=new Date(Date.UTC(p.year,p.month-1,p.day+i));
+    const y=b.getUTCFullYear(), m=b.getUTCMonth()+1, d=b.getUTCDate(), wd=b.getUTCDay();
+    if(wd===0||wd===6) continue;
+    const key=ymd(y,m,d), fer=F[key];
+    if(fer&&fer.t==="closed") continue;
+    const early=!!(fer&&fer.t==="early");
+    const open=nyToDate(y,m,d,9,30), close=nyToDate(y,m,d,early?13:16,0), pre=nyToDate(y,m,d,4,0);
+    if(now<open) return {state:(i===0&&now>=pre)?"pre":"closed",target:open,open,close,early,key};
+    if(now<close) return {state:"open",target:close,open,close,early,key};
+  }
+  return null;
+}
+const fired=new Set();
+let ultimoDia = nyKey(new Date());
+function tick(){
+  const now=new Date(), s=session(now); if(!s) return;
+  const sec=Math.max(0,Math.floor((s.target-now)/1000));
+  const dd=Math.floor(sec/86400), hh=Math.floor(sec%86400/3600), mm=Math.floor(sec%3600/60), ss=sec%60;
+  $("clock").innerHTML=(dd?`${dd}<small>d</small> `:"")+`${pad(hh)}:${pad(mm)}:${pad(ss)}`;
+  const st=$("status"); st.className="pill "+s.state;
+  st.textContent=s.state==="open"?"Mercado abierto":s.state==="pre"?"Premercado":"Mercado cerrado";
+  $("bellTitle").textContent=s.state==="open"
+    ?(s.early?"Faltan para el cierre anticipado del mercado americano":"Faltan para el cierre del mercado americano")
+    :"Faltan para la apertura del mercado americano";
+  const mismoDia = nyKey(s.open)===nyKey(now);
+  $("times").textContent=s.state==="open"
+    ? `Cierra a las ${fmtNY(s.close)} hora de Nueva York`
+    : `Abre ${mismoDia?"hoy":"el "+fmtNYDay(s.open)} a las ${fmtNY(s.open)} hora de Nueva York`+(s.early?" · cierre anticipado 1:00 pm":"");
+  if(alertsOn&&s.state!=="open"&&sec<=300&&sec>295&&!fired.has(s.key+"-5")){ fired.add(s.key+"-5"); notify("⏳ Faltan 5 minutos para la apertura del mercado americano","Abre a las "+fmtNY(s.open)+" hora de Nueva York."); }
+  if(alertsOn&&s.state==="open"){ const since=now-s.open; if(since>=0&&since<5000&&!fired.has(s.key+"-0")){ fired.add(s.key+"-0"); notify("🔔 ¡Sonó la campana!","El mercado americano está abierto."); } }
+  /* Al cambiar de día, se vuelve a pintar todo */
+  const hoy = nyKey(now); if(hoy!==ultimoDia){ ultimoDia=hoy; if(DATOS) render(DATOS); }
+}
+
+/* ---------- Medidor (arcos) ---------- */
+(function arcs(){
+  const cx=110, cy=112, r=86, segs=[[0,25,"var(--down)"],[25,45,"var(--orange)"],[45,56,"var(--gold)"],[56,76,"#7BC043"],[76,100,"var(--up)"]];
+  const pt=v=>{ const a=Math.PI*(1-v/100); return [cx+r*Math.cos(a), cy-r*Math.sin(a)]; };
+  $("arcs").innerHTML=segs.map(([a,b,col])=>{ const [x1,y1]=pt(a+0.6),[x2,y2]=pt(b-0.6); return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${col}" stroke-width="18"/>`; }).join("");
+})();
+
+tick(); setInterval(tick,1000);
+cargarDatos().then(criptoEnVivo);
+setInterval(()=>cargarDatos().then(criptoEnVivo), CONFIG.REFRESCO_DATOS_MS);
+setInterval(criptoEnVivo, CONFIG.REFRESCO_CRIPTO_MS);
+</script>
+</body>
+</html>

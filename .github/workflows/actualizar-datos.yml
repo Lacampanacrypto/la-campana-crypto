@@ -1,0 +1,51 @@
+# Actualiza datos.json y lo publica en la rama "datos".
+# La página lee ese archivo directamente desde GitHub, así no se reconstruye
+# el sitio en Cloudflare cada vez que cambian los números.
+name: Actualizar datos
+
+on:
+  schedule:
+    # Días de semana: cada 15 minutos de 08:00 a 22:45 UTC (premercado, sesión y cierre)
+    - cron: "*/15 8-22 * * 1-5"
+    # Noches de semana y fines de semana: cada hora (bitcoin no cierra)
+    - cron: "7 0-7,23 * * 1-5"
+    - cron: "7 * * * 0,6"
+  workflow_dispatch: {}   # botón "Run workflow" para ejecutarlo a mano
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-datos
+  cancel-in-progress: false
+
+jobs:
+  datos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Generar datos.json
+        run: python scripts/actualizar_datos.py "$RUNNER_TEMP/datos.json"
+
+      - name: Publicar en la rama datos
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # La rama "datos" guarda solo la última versión (un único commit que se reemplaza),
+          # así el repositorio no crece con miles de commits.
+          git switch --orphan datos
+          git rm -rf --quiet . || true
+          cp "$RUNNER_TEMP/datos.json" datos.json
+          git add datos.json
+          git commit -m "Datos $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git push --force origin datos
