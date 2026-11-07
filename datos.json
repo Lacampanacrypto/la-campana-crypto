@@ -1,0 +1,375 @@
+{
+ "actualizado": "2026-11-07T10:39:25+00:00",
+ "cripto": {
+  "monedas": [
+   {
+    "s": "BTC",
+    "precio": 75923.0,
+    "cambio24h": -0.32,
+    "max24h": 76266.0,
+    "min24h": 74921.0
+   },
+   {
+    "s": "ETH",
+    "precio": 2242.73,
+    "cambio24h": 0.18,
+    "max24h": 2248.6,
+    "min24h": 2211.84
+   },
+   {
+    "s": "SOL",
+    "precio": 89.75,
+    "cambio24h": -0.34,
+    "max24h": 91.33,
+    "min24h": 89.59
+   }
+  ],
+  "global": {
+   "dominancia_btc": 59.31,
+   "cap_total": 2568730165389.0,
+   "cap_cambio24h": -2.85,
+   "volumen24h": 56372243287.0
+  }
+ },
+ "miedo_codicia": {
+  "hoy": {
+   "valor": 25,
+   "etiqueta": "Extreme Fear"
+  },
+  "ayer": {
+   "valor": 28,
+   "etiqueta": "Fear"
+  },
+  "semana": {
+   "valor": 30,
+   "etiqueta": "Fear"
+  },
+  "mes": {
+   "valor": 64,
+   "etiqueta": "Greed"
+  }
+ },
+ "btc_niveles": {
+  "vwap_diario": 75872.0,
+  "apertura_diaria": 75731.0,
+  "apertura_semanal": 78232.0,
+  "max_dia": 76152.0,
+  "min_dia": 75674.0
+ },
+ "futuros": [
+  {
+   "s": "NQ",
+   "nombre": "Futuros Nasdaq-100",
+   "precio": 27085.25,
+   "ref": 27085.25,
+   "cambio_pct": 0.0,
+   "cambio": 0.0
+  },
+  {
+   "s": "ES",
+   "nombre": "Futuros S&P 500",
+   "precio": 7402.0,
+   "ref": 7402.0,
+   "cambio_pct": 0.0,
+   "cambio": 0.0
+  },
+  {
+   "s": "Nikkei",
+   "nombre": "Japón",
+   "precio": 57410.91,
+   "ref": 57434.77,
+   "cambio_pct": -0.04,
+   "cambio": -23.859
+  },
+  {
+   "s": "Hang Seng",
+   "nombre": "Hong Kong",
+   "precio": 24481.86,
+   "ref": 24481.86,
+   "cambio_pct": 0.0,
+   "cambio": 0.0
+  },
+  {
+   "s": "Stoxx 600",
+   "nombre": "Europa",
+   "precio": 648.0,
+   "ref": 648.33,
+   "cambio_pct": -0.05,
+   "cambio": -0.33
+  }
+ ],
+ "tasas": [
+  {
+   "s": "US10Y",
+   "nombre": "Bono a 10 años (%)",
+   "precio": 4.86,
+   "ref": 4.86,
+   "cambio_pct": 0.0,
+   "cambio": 0.0
+  },
+  {
+   "s": "DXY",
+   "nombre": "Índice dólar",
+   "precio": 102.28,
+   "ref": 102.3,
+   "cambio_pct": -0.02,
+   "cambio": -0.021
+  },
+  {
+   "s": "VIX",
+   "nombre": "Volatilidad",
+   "precio": 25.63,
+   "ref": 25.64,
+   "cambio_pct": -0.04,
+   "cambio": -0.01
+  }
+ ],
+ "megacaps": [
+  {
+   "s": "NVDA",
+   "nombre": "Nvidia",
+   "precio": 188.7,
+   "ref": 186.64,
+   "cambio_pct": 1.1,
+   "cambio": 2.06
+  },
+  {
+   "s": "AAPL",
+   "nombre": "Apple",
+   "precio": 342.65,
+   "ref": 342.37,
+   "cambio_pct": 0.08,
+   "cambio": 0.28
+  },
+  {
+   "s": "MSFT",
+   "nombre": "Microsoft",
+   "precio": 531.4,
+   "ref": 530.61,
+   "cambio_pct": 0.15,
+   "cambio": 0.79
+  },
+  {
+   "s": "AMZN",
+   "nombre": "Amazon",
+   "precio": 259.84,
+   "ref": 259.3,
+   "cambio_pct": 0.21,
+   "cambio": 0.542
+  },
+  {
+   "s": "META",
+   "nombre": "Meta",
+   "precio": 612.0,
+   "ref": 610.15,
+   "cambio_pct": 0.3,
+   "cambio": 1.85
+  },
+  {
+   "s": "GOOGL",
+   "nombre": "Alphabet",
+   "precio": 285.41,
+   "ref": 284.78,
+   "cambio_pct": 0.22,
+   "cambio": 0.63
+  },
+  {
+   "s": "TSLA",
+   "nombre": "Tesla",
+   "precio": 359.4,
+   "ref": 358.22,
+   "cambio_pct": 0.33,
+   "cambio": 1.18
+  }
+ ],
+ "petroleo": [
+  {
+   "s": "Brent",
+   "nombre": "Referencia internacional",
+   "precio": 98.32,
+   "ref": 98.32,
+   "cambio_pct": 0.0,
+   "cambio": 0.0
+  },
+  {
+   "s": "WTI",
+   "nombre": "Referencia de EE. UU.",
+   "precio": 90.83,
+   "ref": 90.83,
+   "cambio_pct": 0.0,
+   "cambio": 0.0
+  }
+ ],
+ "nq_niveles": {
+  "max_previo": 27425.0,
+  "min_previo": 26988.5,
+  "cierre_previo": 27078.0,
+  "vwap_previo": 27192.56
+ },
+ "calendario": [
+  {
+   "fecha": "2026-11-02T10:00:00-05:00",
+   "titulo": "ISM Manufacturing PMI",
+   "impacto": "medio",
+   "consenso": "54.5",
+   "anterior": "54.5"
+  },
+  {
+   "fecha": "2026-11-03T10:00:00-05:00",
+   "titulo": "JOLTS Job Openings",
+   "impacto": "medio",
+   "consenso": "7.15M",
+   "anterior": "7.08M"
+  },
+  {
+   "fecha": "2026-11-03T10:16:00-05:00",
+   "titulo": "Congressional Elections",
+   "impacto": "alto",
+   "consenso": null,
+   "anterior": null
+  },
+  {
+   "fecha": "2026-11-04T10:00:00-05:00",
+   "titulo": "ISM Services PMI",
+   "impacto": "medio",
+   "consenso": "54.8",
+   "anterior": "54.9"
+  },
+  {
+   "fecha": "2026-11-05T08:30:00-05:00",
+   "titulo": "Unemployment Claims",
+   "impacto": "medio",
+   "consenso": "197K",
+   "anterior": "194K"
+  },
+  {
+   "fecha": "2026-11-06T08:30:00-05:00",
+   "titulo": "Average Hourly Earnings m/m",
+   "impacto": "alto",
+   "consenso": "0.3%",
+   "anterior": "0.1%"
+  },
+  {
+   "fecha": "2026-11-06T08:30:00-05:00",
+   "titulo": "Non-Farm Employment Change",
+   "impacto": "alto",
+   "consenso": "65K",
+   "anterior": "29K"
+  },
+  {
+   "fecha": "2026-11-06T08:30:00-05:00",
+   "titulo": "Unemployment Rate",
+   "impacto": "alto",
+   "consenso": "4.2%",
+   "anterior": "4.2%"
+  },
+  {
+   "fecha": "2026-11-06T10:00:00-05:00",
+   "titulo": "Prelim UoM Consumer Sentiment",
+   "impacto": "medio",
+   "consenso": "48.1",
+   "anterior": "46.3"
+  },
+  {
+   "fecha": "2026-11-06T10:00:00-05:00",
+   "titulo": "Prelim UoM Inflation Expectations",
+   "impacto": "medio",
+   "consenso": null,
+   "anterior": "4.7%"
+  }
+ ],
+ "feriados": {
+  "2026-01-01": {
+   "t": "closed",
+   "n": "Año Nuevo"
+  },
+  "2026-01-19": {
+   "t": "closed",
+   "n": "Día de Martin Luther King Jr."
+  },
+  "2026-02-16": {
+   "t": "closed",
+   "n": "Día de los Presidentes"
+  },
+  "2026-04-03": {
+   "t": "closed",
+   "n": "Viernes Santo"
+  },
+  "2026-05-25": {
+   "t": "closed",
+   "n": "Día de los Caídos"
+  },
+  "2026-06-19": {
+   "t": "closed",
+   "n": "Juneteenth"
+  },
+  "2026-07-03": {
+   "t": "closed",
+   "n": "Día de la Independencia (observado)"
+  },
+  "2026-09-07": {
+   "t": "closed",
+   "n": "Día del Trabajo"
+  },
+  "2026-11-26": {
+   "t": "closed",
+   "n": "Día de Acción de Gracias"
+  },
+  "2026-11-27": {
+   "t": "early",
+   "n": "Viernes después de Acción de Gracias"
+  },
+  "2026-12-24": {
+   "t": "early",
+   "n": "Nochebuena"
+  },
+  "2026-12-25": {
+   "t": "closed",
+   "n": "Navidad"
+  },
+  "2027-01-01": {
+   "t": "closed",
+   "n": "Año Nuevo"
+  },
+  "2027-01-18": {
+   "t": "closed",
+   "n": "Día de Martin Luther King Jr."
+  },
+  "2027-02-15": {
+   "t": "closed",
+   "n": "Día de los Presidentes"
+  },
+  "2027-03-26": {
+   "t": "closed",
+   "n": "Viernes Santo"
+  },
+  "2027-05-31": {
+   "t": "closed",
+   "n": "Día de los Caídos"
+  },
+  "2027-06-18": {
+   "t": "closed",
+   "n": "Juneteenth (observado)"
+  },
+  "2027-07-05": {
+   "t": "closed",
+   "n": "Día de la Independencia (observado)"
+  },
+  "2027-09-06": {
+   "t": "closed",
+   "n": "Día del Trabajo"
+  },
+  "2027-11-25": {
+   "t": "closed",
+   "n": "Día de Acción de Gracias"
+  },
+  "2027-11-26": {
+   "t": "early",
+   "n": "Viernes después de Acción de Gracias"
+  },
+  "2027-12-24": {
+   "t": "closed",
+   "n": "Navidad (observado)"
+  }
+ }
+}
